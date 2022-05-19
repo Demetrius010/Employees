@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -14,23 +15,39 @@
         android:layout_height="8dp"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
-        android:background="?android:attr/listDivider" />
+        android:background="@drawable/search_view_background" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sortBy"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/alphabeticallyRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/alphabeticallyRB"
+            android:textColor="@color/black"
+            android:textColorLink="@color/teal_200"
+            android:textSize="16sp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/birthDateRB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/birthDateRB"
+            android:textColor="@color/black"
+            android:textColorLink="@color/teal_200"
+            android:textSize="16sp" />
 
     </RadioGroup>
 </LinearLayout>

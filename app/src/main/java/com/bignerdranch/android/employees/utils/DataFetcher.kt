@@ -12,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.random.Random
 
 private const val BASE_URL = "https://stoplight.io/mocks/kode-education/trainee-test/25143926/"
 private const val TAG = "DataFetcher"
@@ -41,11 +42,12 @@ class DataFetcher {
             override fun onResponse(call: Call<EmployeesModel>, response: Response<EmployeesModel>) {
                 if (response.isSuccessful){
                     val employeesModel = response.body()
-                    responseLiveData.value = employeesModel?.items ?: listOf()
-                    Log.d(TAG, "onResponse isSuccessful DATA:")
-                    for (empl in employeesModel?.items!!){
-                        Log.d(TAG, empl.toString())
+                    employeesModel?.items?.let {// проходим по всем элементам и меняем URL т.к. срок действия домена (где хранились изображения) истек
+                        for (i in it.indices){
+                            it[i].avatarUrl = "https://i.pravatar.cc/200?img=" + i
+                        }
                     }
+                    responseLiveData.value = employeesModel?.items ?: listOf()
                 }else{
                     Log.e(TAG, "ERROR! Response code: ${response.code()}")
                 }

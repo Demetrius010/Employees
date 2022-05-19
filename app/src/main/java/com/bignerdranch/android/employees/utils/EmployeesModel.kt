@@ -1,12 +1,16 @@
 package com.bignerdranch.android.employees.utils
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class EmployeesModel(
     val items: List<Employee>
 )
 
+@Parcelize
 data class Employee(
     val id: String,
-    val avatarUrl: String,
+    var avatarUrl: String,
     val firstName: String,
     val lastName: String,
     val userTag: String,
@@ -14,7 +18,7 @@ data class Employee(
     val position: String,
     val birthday: String,
     val phone: String
-)
+): Parcelable
 
 //{
 //    "items": [
