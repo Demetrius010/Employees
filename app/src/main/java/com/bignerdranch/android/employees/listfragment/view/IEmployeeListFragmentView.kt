@@ -8,7 +8,8 @@ import moxy.viewstate.strategy.alias.OneExecution
 @AddToEndSingle
 interface IEmployeeListFragmentView : MvpView {
     @OneExecution
-    fun startDataFetching()
-    fun onFailure(errorStrId: Int)
-    fun onSuccess(data: List<Employee>)
+    fun startDataFetching(){}
+    fun onFailure(errorStrId: Int){}
+    fun onSuccess(employees: List<Employee>){}
+    fun update(filter: String){}
 }

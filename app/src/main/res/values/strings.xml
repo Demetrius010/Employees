@@ -99,4 +99,6 @@
     <string name="alphabeticallyRB">Alphabetically</string>
     <string name="birthDateRB">Birth date</string>
     <string name="sortBy">Sort by</string>
+    <string name="nothing_found">Nothing found</string>
+    <string name="found_suggest">Try editing your request</string>
 </resources>

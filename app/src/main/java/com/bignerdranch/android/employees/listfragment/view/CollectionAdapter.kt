@@ -7,7 +7,7 @@ import com.bignerdranch.android.employees.utils.Employee
 
 const val ARG_ELEMENT = "element"
 
-class CollectionAdapter(fragment: Fragment, val elementsData: List<Employee>, val departmens: List<String>) : FragmentStateAdapter(fragment){
+class CollectionAdapter(fragment: Fragment, val employees: List<Employee>, val departmens: List<String>) : FragmentStateAdapter(fragment){
     override fun getItemCount(): Int {
         return departmens.size
     }
@@ -15,13 +15,13 @@ class CollectionAdapter(fragment: Fragment, val elementsData: List<Employee>, va
     override fun createFragment(position: Int): Fragment {
         val filteredData = mutableListOf<Employee>()
         if (position>0){
-            for (data in elementsData){
-                if (data.department == departmens.elementAt(position)){
-                    filteredData.add(data)
+            for (employee in employees){
+                if (employee.department == departmens.elementAt(position)){
+                    filteredData.add(employee)
                 }
             }
         }
-        else filteredData.addAll(elementsData)
+        else filteredData.addAll(employees)
 
         val fragment = CollectionElementFragment(filteredData)// Return a NEW fragment instance in createFragment(int)
         fragment.arguments = Bundle().apply {
