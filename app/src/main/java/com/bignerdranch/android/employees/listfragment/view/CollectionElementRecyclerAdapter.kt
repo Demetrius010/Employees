@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide
 import java.util.*
 
 class CollectionElementRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    private val mDataList: MutableList<RecyclerDataModel> = LinkedList()
+    private val mDataList: MutableList<RecyclerDataModel> = mutableListOf()//LinkedList()
 
     fun getData() = mDataList
     fun setData(newData: List<RecyclerDataModel>){
@@ -85,6 +85,6 @@ class NextYearViewHolder(val view: View): RecyclerView.ViewHolder(view){
     private val nextYearTextView: TextView = view.findViewById(R.id.nextYearTV)
 
     fun bind(item: NextYear){
-        nextYearTextView.text = item.date
+        nextYearTextView.text = item.year.toString()
     }
 }

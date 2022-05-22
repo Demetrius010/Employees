@@ -1,5 +1,7 @@
 package com.bignerdranch.android.employees.detailsFragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,15 @@ import com.bignerdranch.android.employees.R
 import com.bignerdranch.android.employees.databinding.FragmentEmployeeDetailsBinding
 import com.bignerdranch.android.employees.databinding.FragmentEmployeeListBinding
 import com.bumptech.glide.Glide
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.xml.datatype.DatatypeConstants.DAYS
 
 class EmployeeDetailsFragment : Fragment() {
     private var _binding: FragmentEmployeeDetailsBinding? = null
@@ -33,7 +44,11 @@ class EmployeeDetailsFragment : Fragment() {
                 nameTV.text = employeeData.firstName + " " + employeeData.lastName
                 tagTV.text = employeeData.userTag
                 departmentTV.text = employeeData.department
-                birthDateTV.text = employeeData.birthday
+                birthDateTV.text = employeeData.birthday.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))//SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).format(employeeData.birthday)
+                //val diff = Period.between(Date(), employeeData.birthday)
+                //val timeUtil = TimeUnit.MILLISECONDS.toDays(Date().time - employeeData.birthday.time)/365
+                val diff = ChronoUnit.YEARS.between(employeeData.birthday, LocalDate.now())
+                yearsTV.text = diff.toString() + " years"//(Calendar.getInstance().get(Calendar.YEAR) - employeeData.birthday.get(Calendar.YEAR)).toString() + " years" //(TimeUnit.MILLISECONDS.toDays(Date().time - employeeData.birthday.time) / 365).toString()  + " years"
                 phoneTV.text = employeeData.phone
                 Glide.with(requireContext())// загружаем обложку фильма из кеша
                     .load(employeeData.avatarUrl)
@@ -42,6 +57,11 @@ class EmployeeDetailsFragment : Fragment() {
                     .circleCrop()
                     .onlyRetrieveFromCache(true)
                     .into(personImgView)
+            }
+            binding.phoneTV.setOnClickListener{
+                val callIntent = Intent(Intent.ACTION_DIAL)
+                callIntent.setData(Uri.parse("tel:" + employeeData.phone))
+                startActivity(callIntent)
             }
         }
         binding.backBtn.setOnClickListener{

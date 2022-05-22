@@ -81,10 +81,10 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/birthDateTV"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/birthDateTV"
         app:srcCompat="@drawable/ic_star_border" />
 
     <TextView
@@ -92,18 +92,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         tools:text="5 july 1996" />
 
     <TextView
         android:id="@+id/yearsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/birthDateTV"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,13 +111,12 @@
         tools:text="24 years" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/phoneImgView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneTV"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/phoneTV"
         app:srcCompat="@drawable/ic_phone" />
 
     <TextView
@@ -125,12 +124,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/phoneImgView"
+        app:layout_constraintTop_toBottomOf="@+id/birthDateTV"
         tools:text="+7 (900) 900 90 90" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

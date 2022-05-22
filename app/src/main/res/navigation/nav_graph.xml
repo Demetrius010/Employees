@@ -23,4 +23,12 @@
             android:name="EmployeeData"
             app:argType="com.bignerdranch.android.employees.utils.Employee" />
     </fragment>
+    <fragment
+        android:id="@+id/collectionElementFragment"
+        android:name="com.bignerdranch.android.employees.listfragment.view.CollectionElementFragment"
+        android:label="CollectionElementFragment" >
+        <argument
+            android:name="EmployeesByDepartment"
+            app:argType="com.bignerdranch.android.employees.utils.Employee" />
+    </fragment>
 </navigation>

@@ -2,6 +2,8 @@ package com.bignerdranch.android.employees.utils
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
+import java.util.*
 
 data class EmployeesModel(
     val items: List<Employee>
@@ -16,7 +18,7 @@ data class Employee(
     val userTag: String,
     val department: String,
     val position: String,
-    val birthday: String,
+    val birthday: LocalDate,
     val phone: String
 ): Parcelable
 

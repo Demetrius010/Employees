@@ -17,9 +17,9 @@ class RecyclerDataDiffUtill(val oldList: List<RecyclerDataModel>, val newList: L
         val oldItem: RecyclerDataModel = oldList[oldItemPosition]
         val newItem: RecyclerDataModel = newList[newItemPosition]
         if ((oldItem is Person) && (newItem is Person))
-            return oldItem.employee.id == newItem.employee.id
+            return (oldItem.employee.id == newItem.employee.id)
         else if ((oldItem is NextYear) && (newItem is NextYear))
-            return oldItem.date == newItem.date
+            return (oldItem.year == newItem.year)
         else
             return false
     }
@@ -28,7 +28,7 @@ class RecyclerDataDiffUtill(val oldList: List<RecyclerDataModel>, val newList: L
         val oldItem: RecyclerDataModel = oldList[oldItemPosition]
         val newItem: RecyclerDataModel = newList[newItemPosition]
         if ((oldItem is Person) && (newItem is Person))
-            return oldItem.employee == newItem.employee
+            return (oldItem.employee == newItem.employee)
         else
             return false
     }

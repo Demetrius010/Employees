@@ -9,10 +9,12 @@
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/filter_bottom_sheet.xml" value="0.25" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_delete.xml" value="0.315625" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_element.xml" value="0.33" />
-        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_details.xml" value="0.33" />
-        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_list.xml" value="0.25" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_details.xml" value="0.22" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_list.xml" value="0.22" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_new_year.xml" value="0.5" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_next_year.xml" value="0.33" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_person.xml" value="0.33" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/sort_bottom_sheet.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/menu/employee_search.xml" value="0.1" />
       </map>
     </option>

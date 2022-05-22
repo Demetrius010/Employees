@@ -18,16 +18,17 @@
         android:background="@drawable/search_view_background" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:paddingTop="16dp"
         android:text="@string/sortBy"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <RadioGroup
+        android:id="@+id/sortRG"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/purple_500"
+            android:checked="true"
             android:text="@string/alphabeticallyRB"
             android:textColor="@color/black"
             android:textColorLink="@color/teal_200"

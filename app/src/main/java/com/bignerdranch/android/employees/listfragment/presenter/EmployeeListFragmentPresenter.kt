@@ -15,16 +15,18 @@ import javax.inject.Singleton
 
 @Singleton// используем чтоб привязать 1 презентер к нескольким VIEW
 class EmployeeListFragmentPresenter @Inject constructor(val repository: Repository): MvpPresenter<IEmployeeListFragmentView>() {
-//    @Inject
-//    lateinit var repository: Repository
+    var currentPage: Int = -1
+    var searchStr: String = ""
+        set(value) {
+            viewState.update(value, sortType)
+            field = value
+        }
 
-    private var allEmployees: List<Employee> = listOf()
-    fun setSearchStr(string: String){
-        viewState.update(string)
-//        for (v in attachedViews){
-//            Log.d("EmployeeListFragmentPresenter", "setSearchStr attachedViews: ${v.toString()}")
-//        }
-    }
+    var sortType: String = ""
+        set(value) {
+            viewState.update(searchStr, value)
+            field = value
+        }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -32,19 +34,18 @@ class EmployeeListFragmentPresenter @Inject constructor(val repository: Reposito
 
         repository.fetchData().observeForever{ employeeList ->
             if(employeeList.isEmpty()){
-                viewState.onFailure(R.string.apiError)
+                viewState.onFailure()
             }
             else{
-                allEmployees = employeeList
-                viewState.onSuccess(employeeList)
+                viewState.onSuccess(employeeList.sortedBy { it.firstName }, getDepartments(employeeList))// по умолчанию сортировка по имени
             }
         }
     }
 
-    fun getDepartments(): List<String>{
+    fun getDepartments(employeesList: List<Employee>): List<String>{
         val departmentsSet = mutableSetOf<String>()
         departmentsSet.add("ALL")
-        for (emploee in allEmployees){
+        for (emploee in employeesList){
             departmentsSet.add(emploee.department)
         }
         return departmentsSet.sortedBy{it}
