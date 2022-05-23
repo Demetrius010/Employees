@@ -3,6 +3,7 @@ package com.bignerdranch.android.employees.listfragment.presenter
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.bignerdranch.android.employees.R
 import com.bignerdranch.android.employees.listfragment.view.IEmployeeListFragmentView
 import com.bignerdranch.android.employees.utils.Employee
@@ -30,9 +31,12 @@ class EmployeeListFragmentPresenter @Inject constructor(val repository: Reposito
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.startDataFetching()
+        startDateFetching()
+    }
 
-        repository.fetchData().observeForever{ employeeList ->
+    fun startDateFetching(){
+        viewState.startDataFetching()
+        repository.fetchData().observeForever { employeeList ->
             if(employeeList.isEmpty()){
                 viewState.onFailure()
             }
@@ -41,6 +45,15 @@ class EmployeeListFragmentPresenter @Inject constructor(val repository: Reposito
             }
         }
     }
+
+//    fun <T> LiveData<T>.observeOnce(observer: (T) -> Unit) {
+//        observeForever(object: Observer<T> {
+//            override fun onChanged(value: T) {
+//                removeObserver(this)
+//                observer(value)
+//            }
+//        })
+//    }
 
     fun getDepartments(employeesList: List<Employee>): List<String>{
         val departmentsSet = mutableSetOf<String>()

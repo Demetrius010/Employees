@@ -107,6 +107,7 @@ class CollectionElementFragment : MvpAppCompatFragment(), IEmployeeListFragmentV
             for (employee in employees.sortedByDescending { it.birthday.dayOfYear }){// sortedWith(compareBy<Employee> { it.birthday.month }.thenBy { it.birthday.day })){
                 //Log.d("SORT: ", "${employee.birthday.month}.${employee.birthday}")
                 if(!labelAdded && employee.birthday.dayOfYear < now){
+                    recyclerData.reverse()
                     recyclerData.add(NextYear( LocalDate.now().year + 1))
                     labelAdded = true
                 }

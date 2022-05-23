@@ -103,4 +103,6 @@
     <string name="found_suggest">Try editing your request</string>
     <string name="onFetchError">Something went wrong.</string>
     <string name="tryAgain">Please try again later.</string>
+    <string name="make_call">Call</string>
+    <string name="make_sms">SMS</string>
 </resources>

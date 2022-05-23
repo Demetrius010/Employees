@@ -15,6 +15,8 @@ import com.bignerdranch.android.employees.databinding.FragmentEmployeeListBindin
 import com.bignerdranch.android.employees.listfragment.presenter.EmployeeListFragmentPresenter
 import com.bignerdranch.android.employees.utils.Employee
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -45,6 +47,7 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String): Boolean {
                 presenter.searchStr = p0
+                binding.searchView.clearFocus()
                 return false
             }
 
@@ -54,6 +57,10 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
                 return false
             }
         })
+        binding.swipeRefreshLayout.setOnRefreshListener{
+            binding.swipeRefreshLayout.isRefreshing = true
+            presenter.startDateFetching()
+        }
         return binding.root//inflater.inflate(R.layout.fragment_employee_list, container, false)
     }
 
@@ -62,30 +69,29 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
             binding.searchView.setQuery(presenter.searchStr, false)
         }
 
-        val bottomSheet = view.findViewById<LinearLayout>(R.id.bottomSheet)
-        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-//        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
-//            override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                Log.d("EmployeeListFragment", "onStateChanged: newState: $newState")
-//            }
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-//        })
-        val sortAlphBtn = bottomSheet.findViewById<RadioButton>(R.id.alphabeticallyRB)
-        sortAlphBtn.setOnClickListener {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        bottomSheetDialog.setContentView(R.layout.sort_bottom_sheet)
+        val sortAlphBtn = bottomSheetDialog.findViewById<RadioButton>(R.id.alphabeticallyRB)//bottomSheet.findViewById<RadioButton>(R.id.alphabeticallyRB)
+        sortAlphBtn?.setOnClickListener {
+            //bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             presenter.sortType = "alph" // сохраняем чтоб восстановить после пересоздания
+            bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_HIDDEN
+            binding.searchView.clearFocus()
         }
-        val sortBirthBtn = bottomSheet.findViewById<RadioButton>(R.id.birthDateRB)
-        sortBirthBtn.setOnClickListener {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        val sortBirthBtn = bottomSheetDialog.findViewById<RadioButton>(R.id.birthDateRB)//bottomSheet.findViewById<RadioButton>(R.id.birthDateRB)
+        sortBirthBtn?.setOnClickListener {
+            //bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             presenter.sortType = "birth"// сохраняем чтоб восстановить после пересоздания
+            bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_HIDDEN
+            binding.searchView.clearFocus()
         }
         if(presenter.sortType == "birth") {// если в презентере есть значение то восстанавливаем состояние которое было до пересоздания
-            sortBirthBtn.isChecked = true// изменяют только визуал т.к. информация о том какая сортировка (строка поиска) была выбрана, придет после пересоздания в методе onUpdate, благодоря MOXY
+            sortBirthBtn?.isChecked = true// изменяют только визуал т.к. информация о том какая сортировка (строка поиска) была выбрана, придет после пересоздания в методе onUpdate, благодоря MOXY
         }
 
         binding.sortImgView.setOnClickListener {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            bottomSheetDialog.show()
+            bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED// в горизонтальной ориентации открывается не полностью, поэтому дополнительно BottomSheetBehavior.STATE_EXPANDED
         }
     }
 
@@ -95,17 +101,16 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
     }
 
     override fun startDataFetching() {
-        showProgressBar(true)
+        binding.swipeRefreshLayout.isRefreshing = true
     }
 
     override fun onFailure() {
-        showProgressBar(false)
+        binding.swipeRefreshLayout.isRefreshing = false
         binding.onErrorView.visibility = View.VISIBLE
     }
 
     override fun onSuccess(employees: List<Employee>, departments: List<String>) {
-        Log.e("EmployeeListFragment", "onSuccess")
-        showProgressBar(false)
+        binding.swipeRefreshLayout.isRefreshing = false
         val collectionAdapter = CollectionAdapter(this, employees, departments)// When requested, this adapter returns a ElementFragment, representing an object in the collection
         binding.viewPager.adapter = collectionAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
@@ -117,17 +122,7 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
             }
         })
         if(presenter.currentPage > -1) {// если в презентере есть значение то мы восстанавливаем состояние которое было до пересоздания
-            binding.viewPager.currentItem = presenter.currentPage // изменяют только визуал т.к. информация о том какая сортировка (строка поиска) была выбрана, придет после пересоздания в методе onUpdate, благодоря MOXY
-        }
-    }
-
-    fun showProgressBar(boolean: Boolean){
-        if (boolean){
-            binding.progressBar.visibility = View.VISIBLE
-            binding.viewPager.visibility = View.INVISIBLE
-        }else{
-            binding.progressBar.visibility = View.INVISIBLE
-            binding.viewPager.visibility = View.VISIBLE
+            binding.viewPager.setCurrentItem(presenter.currentPage, false) // изменяют только визуал т.к. информация о том какая сортировка (строка поиска) была выбрана, придет после пересоздания в методе onUpdate, благодоря MOXY
         }
     }
 }

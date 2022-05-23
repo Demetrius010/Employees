@@ -23,20 +23,12 @@ import kotlin.random.Random
 private const val BASE_URL = "https://stoplight.io/mocks/kode-education/trainee-test/25143926/"
 private const val TAG = "DataFetcher"
 
-class LocalDateTypeAdapter : TypeAdapter<LocalDate>() {// Этот адаптер нужен для ковертации в тип LocalDate
-
-    override fun write(out: JsonWriter, value: LocalDate) {
-        out.value(DateTimeFormatter.ISO_LOCAL_DATE.format(value))
-    }
-
-    override fun read(input: JsonReader): LocalDate = LocalDate.parse(input.nextString())
-}
-
 class DataFetcher {
     private val employeesApi: EmployeesApi
 
     init {
-//        val httpClient = OkHttpClient.Builder() // использую только для тестов
+        // использую только для тестов
+//        val httpClient = OkHttpClient.Builder()
 //        httpClient.addInterceptor(object : Interceptor{
 //            override fun intercept(chain: Interceptor.Chain):okhttp3.Response {
 //                val request: Request = chain.request().newBuilder().addHeader("Prefer", "code=500").build()//dynamic=true
@@ -80,4 +72,13 @@ class DataFetcher {
         })
         return responseLiveData
     }
+}
+
+class LocalDateTypeAdapter : TypeAdapter<LocalDate>() {// Этот адаптер нужен для ковертации в тип LocalDate
+
+    override fun write(out: JsonWriter, value: LocalDate) {
+        out.value(DateTimeFormatter.ISO_LOCAL_DATE.format(value))
+    }
+
+    override fun read(input: JsonReader): LocalDate = LocalDate.parse(input.nextString())
 }

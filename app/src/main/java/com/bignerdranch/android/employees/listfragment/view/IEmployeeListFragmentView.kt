@@ -12,6 +12,5 @@ interface IEmployeeListFragmentView : MvpView {
     fun startDataFetching(){}
     fun onFailure(){}
     fun onSuccess(employees: List<Employee>, departments: List<String>){}
-
     fun update(searchStr: String, sortType: String){}
 }

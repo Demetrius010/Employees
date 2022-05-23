@@ -7,20 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.employees.R
 import com.bignerdranch.android.employees.databinding.FragmentEmployeeDetailsBinding
-import com.bignerdranch.android.employees.databinding.FragmentEmployeeListBinding
 import com.bumptech.glide.Glide
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.time.LocalDate
-import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
-import java.util.concurrent.TimeUnit
-import javax.xml.datatype.DatatypeConstants.DAYS
 
 class EmployeeDetailsFragment : Fragment() {
     private var _binding: FragmentEmployeeDetailsBinding? = null
@@ -37,6 +34,7 @@ class EmployeeDetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         arguments?.let {
             val args = EmployeeDetailsFragmentArgs.fromBundle(it)
             val employeeData = args.employeeData
@@ -58,10 +56,27 @@ class EmployeeDetailsFragment : Fragment() {
                     .onlyRetrieveFromCache(true)
                     .into(personImgView)
             }
+
+            val bottomSheet = view.findViewById<LinearLayout>(R.id.callBottomSheet)
+            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+/*            bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback(){
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    Log.d("EmployeeListFragment", "onStateChanged: newState: $newState")
+                }
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+            })*/
             binding.phoneTV.setOnClickListener{
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+            bottomSheet.findViewById<Button>(R.id.makeCallBtn).setOnClickListener{
                 val callIntent = Intent(Intent.ACTION_DIAL)
                 callIntent.setData(Uri.parse("tel:" + employeeData.phone))
                 startActivity(callIntent)
+            }
+            bottomSheet.findViewById<Button>(R.id.makeSMSBtn).setOnClickListener{
+                val smsIntent = Intent(Intent.ACTION_SENDTO)
+                smsIntent.setData(Uri.parse("smsto:" + employeeData.phone))
+                startActivity(smsIntent)
             }
         }
         binding.backBtn.setOnClickListener{
