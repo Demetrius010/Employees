@@ -9,11 +9,13 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bignerdranch.android.employees.R
 import com.bignerdranch.android.employees.databinding.FragmentEmployeeListBinding
 import com.bignerdranch.android.employees.listfragment.presenter.EmployeeListFragmentPresenter
 import com.bignerdranch.android.employees.utils.Employee
+import com.bignerdranch.android.employees.utils.UserPreferences
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -60,6 +62,12 @@ class EmployeeListFragment: MvpAppCompatFragment(), IEmployeeListFragmentView {
         binding.swipeRefreshLayout.setOnRefreshListener{
             binding.swipeRefreshLayout.isRefreshing = true
             presenter.startDateFetching()
+        }
+        binding.fabMsg.setOnClickListener{
+            findNavController().navigate(EmployeeListFragmentDirections.actionEmployeeListFragmentToChatsListFragment())
+        }
+        binding.fabDelete.setOnClickListener{
+            UserPreferences.setData(requireContext(), "", "", "")
         }
         return binding.root//inflater.inflate(R.layout.fragment_employee_list, container, false)
     }

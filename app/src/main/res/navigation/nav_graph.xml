@@ -3,8 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/employeeListFragment">
-
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.bignerdranch.android.employees.logingFragment.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_employeeListFragment"
+            app:destination="@id/employeeListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/employeeListFragment"
         android:name="com.bignerdranch.android.employees.listfragment.view.EmployeeListFragment"
@@ -13,6 +21,9 @@
         <action
             android:id="@+id/action_employeeListFragment_to_employeeDetailsFragment"
             app:destination="@id/employeeDetailsFragment" />
+        <action
+            android:id="@+id/action_employeeListFragment_to_chatsListFragment"
+            app:destination="@id/chatsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/employeeDetailsFragment"
@@ -24,11 +35,21 @@
             app:argType="com.bignerdranch.android.employees.utils.Employee" />
     </fragment>
     <fragment
-        android:id="@+id/collectionElementFragment"
-        android:name="com.bignerdranch.android.employees.listfragment.view.CollectionElementFragment"
-        android:label="CollectionElementFragment" >
+        android:id="@+id/talkFragment"
+        android:name="com.bignerdranch.android.employees.talkFragment.view.TalkFragment"
+        android:label="fragment_talk"
+        tools:layout="@layout/fragment_talk" >
         <argument
-            android:name="EmployeesByDepartment"
-            app:argType="com.bignerdranch.android.employees.utils.Employee" />
+            android:name="ChatData"
+            app:argType="com.bignerdranch.android.employees.chatsListFragment.model.Chat" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatsListFragment"
+        android:name="com.bignerdranch.android.employees.chatsListFragment.view.ChatsListFragment"
+        android:label="fragment_chats_list"
+        tools:layout="@layout/fragment_chats_list" >
+        <action
+            android:id="@+id/action_chatsListFragment_to_talkFragment"
+            app:destination="@id/talkFragment" />
     </fragment>
 </navigation>

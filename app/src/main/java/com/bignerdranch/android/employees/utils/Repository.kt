@@ -16,4 +16,14 @@ class Repository private constructor(){
     }
 
     fun fetchData() = DataFetcher().fetchEmployees()
+
+    var phone = ""
+    var name = ""
+    var email = ""
+
+    fun saveCurUser(phone: String, name: String, email: String) {
+        this.phone = phone
+        this.name = name
+        this.email = email
+    }
 }

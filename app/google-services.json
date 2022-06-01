@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "969242456374",
+    "project_id": "employees-3f7e9",
+    "storage_bucket": "employees-3f7e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969242456374:android:397bebfea6a3de82a8c397",
+        "android_client_info": {
+          "package_name": "com.bignerdranch.android.employees"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969242456374-d6l4guidep6fsfm2p765n0br9u1eh32q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoTiynWQkVZ_UPD5Nuen9IUNWHaGzMoXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969242456374-d6l4guidep6fsfm2p765n0br9u1eh32q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

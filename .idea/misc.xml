@@ -3,15 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/drawable/ic_message.xml" value="0.1" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/drawable/ic_phone.xml" value="0.1" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/drawable/ic_search.xml" value="0.138" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/drawable/search_view_background.xml" value="0.1" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/call_bottom_sheet.xml" value="0.18885869565217392" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/filter_bottom_sheet.xml" value="0.25" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_chat.xml" value="0.27906976744186046" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_chats_list.xml" value="0.1" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_delete.xml" value="0.315625" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_element.xml" value="0.33" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_details.xml" value="0.22" />
-        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_list.xml" value="0.1" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_employee_list.xml" value="0.18" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/fragment_talk.xml" value="0.22" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_chat.xml" value="0.33" />
+        <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_message.xml" value="0.18" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_new_year.xml" value="0.5" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_next_year.xml" value="0.33" />
         <entry key="..\:/Users/Demet/AndroidStudioProjects/Employees/app/src/main/res/layout/item_person.xml" value="0.33" />
